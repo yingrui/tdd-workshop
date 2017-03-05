@@ -55,4 +55,17 @@ public class RoverTest {
         assertEquals(0, coordinate.getY());
     }
 
+    @Test
+    public void rover_should_be_able_to_move_towards_west() {
+        Rover rover = new Rover(5, 5);
+        rover.send(HeadingEast());
+        rover.send(Move());
+        rover.send(HeadingWest());
+        rover.send(Move());
+        Coordinate coordinate = rover.getCoordinate();
+        assertEquals(Coordinate.West, coordinate.getHeading());
+        assertEquals(0, coordinate.getX());
+        assertEquals(0, coordinate.getY());
+    }
+
 }

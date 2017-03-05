@@ -16,6 +16,10 @@ public class Command {
         return new Command("E");
     }
 
+    public static Command HeadingWest() {
+        return new Command("W");
+    }
+
     public static Command Move() {
         return new Command("M");
     }

@@ -4,6 +4,7 @@ public class Coordinate {
 
     public static final String North = "N";
     public static final String East = "E";
+    public static final String West = "W";
 
     private String heading;
     private int x;
