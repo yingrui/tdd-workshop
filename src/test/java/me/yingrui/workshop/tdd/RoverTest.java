@@ -14,4 +14,13 @@ public class RoverTest {
         assertEquals(5, atlas.getRight());
     }
 
+    @Test
+    public void position_of_rover_should_be_zero_at_beginning() {
+        Rover rover = new Rover(5, 5);
+        Coordinate coordinate = rover.getCoordinate();
+        assertEquals(Coordinate.North, coordinate.getHeading());
+        assertEquals(0, coordinate.getX());
+        assertEquals(0, coordinate.getY());
+    }
+
 }
