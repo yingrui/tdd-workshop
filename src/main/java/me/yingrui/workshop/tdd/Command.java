@@ -15,4 +15,8 @@ public class Command {
     public static Command HeadingEast() {
         return new Command("E");
     }
+
+    public static Command Move() {
+        return new Command("M");
+    }
 }
