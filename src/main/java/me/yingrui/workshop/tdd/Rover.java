@@ -17,4 +17,8 @@ public class Rover {
     public Coordinate getCoordinate() {
         return this.coordinate;
     }
+
+    public void send(Command command) {
+
+    }
 }

@@ -2,6 +2,7 @@ package me.yingrui.workshop.tdd;
 
 import org.junit.Test;
 
+import static me.yingrui.workshop.tdd.Command.*;
 import static org.junit.Assert.*;
 
 public class RoverTest {
@@ -19,6 +20,16 @@ public class RoverTest {
         Rover rover = new Rover(5, 5);
         Coordinate coordinate = rover.getCoordinate();
         assertEquals(Coordinate.North, coordinate.getHeading());
+        assertEquals(0, coordinate.getX());
+        assertEquals(0, coordinate.getY());
+    }
+
+    @Test
+    public void rover_should_be_able_to_receive_commands() {
+        Rover rover = new Rover(5, 5);
+        rover.send(HeadingEast());
+        Coordinate coordinate = rover.getCoordinate();
+        assertEquals(Coordinate.East, coordinate.getHeading());
         assertEquals(0, coordinate.getX());
         assertEquals(0, coordinate.getY());
     }

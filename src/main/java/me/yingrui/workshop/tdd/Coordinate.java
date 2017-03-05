@@ -3,6 +3,7 @@ package me.yingrui.workshop.tdd;
 public class Coordinate {
 
     public static final String North = "N";
+    public static final String East = "E";
 
     private String heading;
     private int x;
