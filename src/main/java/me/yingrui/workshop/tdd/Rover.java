@@ -19,6 +19,13 @@ public class Rover {
     }
 
     public void send(Command command) {
+        this.coordinate = execute(command);
+    }
 
+    private Coordinate execute(Command command) {
+        if (command.getOrder().equals(Coordinate.East)) {
+            return new Coordinate(Coordinate.East, this.coordinate.getX(), this.coordinate.getY());
+        }
+        return null;
     }
 }
