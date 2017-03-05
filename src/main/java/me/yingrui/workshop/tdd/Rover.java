@@ -26,6 +26,9 @@ public class Rover {
         if (command.getOrder().equals(Coordinate.East)) {
             return new Coordinate(Coordinate.East, this.coordinate.getX(), this.coordinate.getY());
         }
+        if (command.getOrder().equals(Coordinate.West)) {
+            return new Coordinate(Coordinate.West, this.coordinate.getX(), this.coordinate.getY());
+        }
         if (command.getOrder().equals("M")) {
             return move();
         }
@@ -39,6 +42,10 @@ public class Rover {
 
         if (this.coordinate.getHeading().equals(Coordinate.East)) {
             return new Coordinate(this.coordinate.getHeading(), this.coordinate.getX() + 1, this.coordinate.getY());
+        }
+
+        if (this.coordinate.getHeading().equals(Coordinate.West)) {
+            return new Coordinate(this.coordinate.getHeading(), this.coordinate.getX() - 1, this.coordinate.getY());
         }
         return null;
     }
