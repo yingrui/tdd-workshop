@@ -26,6 +26,9 @@ public class Rover {
         if (command.getOrder().equals(Coordinate.East)) {
             return new Coordinate(Coordinate.East, this.coordinate.getX(), this.coordinate.getY());
         }
+        if (command.getOrder().equals("M")) {
+            return new Coordinate(this.coordinate.getHeading(), this.coordinate.getX(), this.coordinate.getY() + 1);
+        }
         return null;
     }
 }
