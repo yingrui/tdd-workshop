@@ -27,7 +27,18 @@ public class Rover {
             return new Coordinate(Coordinate.East, this.coordinate.getX(), this.coordinate.getY());
         }
         if (command.getOrder().equals("M")) {
+            return move();
+        }
+        return null;
+    }
+
+    private Coordinate move() {
+        if (this.coordinate.getHeading().equals(Coordinate.North)) {
             return new Coordinate(this.coordinate.getHeading(), this.coordinate.getX(), this.coordinate.getY() + 1);
+        }
+
+        if (this.coordinate.getHeading().equals(Coordinate.East)) {
+            return new Coordinate(this.coordinate.getHeading(), this.coordinate.getX() + 1, this.coordinate.getY());
         }
         return null;
     }
