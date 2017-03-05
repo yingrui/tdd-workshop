@@ -12,6 +12,14 @@ public class Command {
         return order;
     }
 
+    public static Command HeadingNorth() {
+        return new Command("N");
+    }
+
+    public static Command HeadingSouth() {
+        return new Command("S");
+    }
+
     public static Command HeadingEast() {
         return new Command("E");
     }

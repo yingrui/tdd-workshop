@@ -37,6 +37,8 @@ public class RoverTest {
     @Test
     public void rover_should_be_able_to_move_towards_north() {
         Rover rover = new Rover(5, 5);
+        rover.send(HeadingEast());
+        rover.send(HeadingNorth());
         rover.send(Move());
         Coordinate coordinate = rover.getCoordinate();
         assertEquals(Coordinate.North, coordinate.getHeading());
@@ -64,6 +66,19 @@ public class RoverTest {
         rover.send(Move());
         Coordinate coordinate = rover.getCoordinate();
         assertEquals(Coordinate.West, coordinate.getHeading());
+        assertEquals(0, coordinate.getX());
+        assertEquals(0, coordinate.getY());
+    }
+
+    @Test
+    public void rover_should_be_able_to_move_towards_south() {
+        Rover rover = new Rover(5, 5);
+        rover.send(HeadingNorth());
+        rover.send(Move());
+        rover.send(HeadingSouth());
+        rover.send(Move());
+        Coordinate coordinate = rover.getCoordinate();
+        assertEquals(Coordinate.South, coordinate.getHeading());
         assertEquals(0, coordinate.getX());
         assertEquals(0, coordinate.getY());
     }
