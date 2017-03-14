@@ -7,8 +7,8 @@ public class Rover {
     private Atlas atlas;
     private Coordinate coordinate;
 
-    public Rover(int top, int right) {
-        atlas = new Atlas(top, right);
+    public Rover(Atlas atlas) {
+        this.atlas = atlas;
         coordinate = new Coordinate(0, 0);
     }
 
