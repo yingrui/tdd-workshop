@@ -1,14 +1,18 @@
 package me.yingrui.workshop.tdd;
 
+import me.yingrui.workshop.tdd.logs.RoverLogs;
+
 import static me.yingrui.workshop.tdd.Coordinate.*;
 
 public class Rover {
 
     private Atlas atlas;
+    private RoverLogs logs;
     private Coordinate coordinate;
 
-    public Rover(Atlas atlas) {
+    public Rover(Atlas atlas, RoverLogs logs) {
         this.atlas = atlas;
+        this.logs = logs;
         coordinate = new Coordinate(0, 0);
     }
 
@@ -21,7 +25,9 @@ public class Rover {
     }
 
     public void send(Command command) {
-        this.coordinate = execute(command);
+        Coordinate next = execute(command);
+        this.logs.record(this.coordinate, next, command);
+        this.coordinate = next;
     }
 
     private Coordinate execute(Command command) {
