@@ -1,5 +1,6 @@
 package me.yingrui.workshop.tdd.camera;
 
+import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -16,11 +17,12 @@ public class Camera {
         this.httpClient = httpClient;
     }
 
-    public void takePhoto() throws IOException {
+    public Boolean takePhoto() throws IOException {
         String photo = "This is the photo around rover";
         HttpPost post = new HttpPost(earthControlCenter);
         post.setEntity(new StringEntity(photo));
-        httpClient.execute(post);
+        HttpResponse response = httpClient.execute(post);
+        return response.getStatusLine().getStatusCode() != 200 ? false : true;
     }
 
 }
