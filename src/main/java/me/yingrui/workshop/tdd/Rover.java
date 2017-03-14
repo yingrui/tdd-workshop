@@ -1,5 +1,7 @@
 package me.yingrui.workshop.tdd;
 
+import static me.yingrui.workshop.tdd.Coordinate.*;
+
 public class Rover {
 
     private Atlas atlas;
@@ -23,40 +25,32 @@ public class Rover {
     }
 
     private Coordinate execute(Command command) {
-        if (command.getOrder().equals(Coordinate.East)) {
-            return new Coordinate(Coordinate.East, this.coordinate.getX(), this.coordinate.getY());
-        }
-        if (command.getOrder().equals(Coordinate.North)) {
-            return new Coordinate(Coordinate.North, this.coordinate.getX(), this.coordinate.getY());
-        }
-        if (command.getOrder().equals(Coordinate.West)) {
-            return new Coordinate(Coordinate.West, this.coordinate.getX(), this.coordinate.getY());
-        }
-        if (command.getOrder().equals(Coordinate.South)) {
-            return new Coordinate(Coordinate.South, this.coordinate.getX(), this.coordinate.getY());
-        }
-        if (command.getOrder().equals("M")) {
+        if (command.isMovingCommand()) {
             return move();
         }
-        return null;
+        return new Coordinate(command.getOrder(), this.coordinate.getX(), this.coordinate.getY());
     }
 
     private Coordinate move() {
-        if (this.coordinate.getHeading().equals(Coordinate.North)) {
-            return new Coordinate(this.coordinate.getHeading(), this.coordinate.getX(), this.coordinate.getY() + 1);
+        String heading = this.coordinate.getHeading();
+
+        int x = this.coordinate.getX();
+        int y = this.coordinate.getY();
+        if (heading.equals(North)) {
+            y += 1;
         }
 
-        if (this.coordinate.getHeading().equals(Coordinate.East)) {
-            return new Coordinate(this.coordinate.getHeading(), this.coordinate.getX() + 1, this.coordinate.getY());
+        if (heading.equals(East)) {
+            x += 1;
         }
 
-        if (this.coordinate.getHeading().equals(Coordinate.West)) {
-            return new Coordinate(this.coordinate.getHeading(), this.coordinate.getX() - 1, this.coordinate.getY());
+        if (heading.equals(West)) {
+            x -= 1;
         }
 
-        if (this.coordinate.getHeading().equals(Coordinate.South)) {
-            return new Coordinate(this.coordinate.getHeading(), this.coordinate.getX(), this.coordinate.getY() - 1);
+        if (heading.equals(South)) {
+            y -= 1;
         }
-        return null;
+        return new Coordinate(heading, x, y);
     }
 }

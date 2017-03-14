@@ -1,10 +1,13 @@
 package me.yingrui.workshop.tdd;
 
+import static me.yingrui.workshop.tdd.Coordinate.*;
+
 public class Command {
 
     private String order;
+    private final static String Move = "M";
 
-    public Command(String order) {
+    private Command(String order) {
         this.order = order;
     }
 
@@ -12,23 +15,27 @@ public class Command {
         return order;
     }
 
+    public boolean isMovingCommand() {
+        return getOrder().equals(Move);
+    }
+
     public static Command HeadingNorth() {
-        return new Command("N");
+        return new Command(North);
     }
 
     public static Command HeadingSouth() {
-        return new Command("S");
+        return new Command(South);
     }
 
     public static Command HeadingEast() {
-        return new Command("E");
+        return new Command(East);
     }
 
     public static Command HeadingWest() {
-        return new Command("W");
+        return new Command(West);
     }
 
     public static Command Move() {
-        return new Command("M");
+        return new Command(Move);
     }
 }
