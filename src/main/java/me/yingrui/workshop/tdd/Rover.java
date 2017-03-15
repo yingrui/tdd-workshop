@@ -1,6 +1,9 @@
 package me.yingrui.workshop.tdd;
 
+import me.yingrui.workshop.tdd.camera.Camera;
 import me.yingrui.workshop.tdd.logs.RoverLogs;
+
+import java.io.IOException;
 
 import static me.yingrui.workshop.tdd.Coordinate.*;
 
@@ -9,10 +12,12 @@ public class Rover {
     private Atlas atlas;
     private RoverLogs logs;
     private Coordinate coordinate;
+    private Camera camera;
 
-    public Rover(Atlas atlas, RoverLogs logs) {
+    public Rover(Atlas atlas, RoverLogs logs, Camera camera) {
         this.atlas = atlas;
         this.logs = logs;
+        this.camera = camera;
         coordinate = new Coordinate(0, 0);
     }
 
@@ -26,8 +31,22 @@ public class Rover {
 
     public void send(Command command) {
         Coordinate next = execute(command);
-        this.logs.record(this.coordinate, next, command);
+        record(command, next);
+        takePhoto(command);
         this.coordinate = next;
+    }
+
+    private void takePhoto(Command command) {
+        try {
+            if (command.isMovingCommand())
+                this.camera.takePhoto();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void record(Command command, Coordinate next) {
+        this.logs.record(this.coordinate, next, command);
     }
 
     private Coordinate execute(Command command) {
